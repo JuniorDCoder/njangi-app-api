@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\LoansController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EventsController;
@@ -32,6 +33,11 @@ Route::group(['prefix' => 'transactions'], function(){
                 ->name('transaction.create');
 
     Route::get('/contributions', [TransactionsController::class, 'getContributionTransactions']);
+});
+
+Route::group(['prefix' => 'loan'], function(){
+    Route::post('/request', [LoansController::class, 'store'])
+                ->name('loan.create');
 });
 
 Route::get('/users', [UsersController::class, 'getAllUsers'])->name('user.get-all');
